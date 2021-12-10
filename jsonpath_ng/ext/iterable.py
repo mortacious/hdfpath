@@ -12,6 +12,7 @@
 # under the License.
 
 import functools
+from collections.abc import Mapping
 from .. import This, DatumInContext, JSONPath
 
 
@@ -45,10 +46,10 @@ class SortedThis(This):
 
     def find(self, datum):
         """Return sorted value of This if list or dict."""
-        if isinstance(datum.value, dict) and self.expressions:
+        if isinstance(datum.value, Mapping) and self.expressions:
             return datum
 
-        if isinstance(datum.value, dict) or isinstance(datum.value, list):
+        if isinstance(datum.value, Mapping) or isinstance(datum.value, list):
             key = (functools.cmp_to_key(self._compare)
                    if self.expressions else None)
             return [DatumInContext.wrap(

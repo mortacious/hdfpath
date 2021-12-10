@@ -3,6 +3,7 @@ import logging
 import six
 from six.moves import xrange
 from itertools import *  # noqa
+from collections.abc import Mapping
 from .exceptions import JSONPathError
 
 # Get logger name
@@ -388,7 +389,7 @@ class Descendants(JSONPath):
                                      for i in range(0, len(datum.value))
                                      for submatch in match_recursively(DatumInContext(datum.value[i], context=datum, path=Index(i)))]
 
-            elif isinstance(datum.value, dict):
+            elif isinstance(datum.value, Mapping):
                 recursive_matches = [submatch
                                      for field in datum.value.keys()
                                      for submatch in match_recursively(DatumInContext(datum.value[field], context=datum, path=Fields(field)))]
@@ -700,7 +701,7 @@ class Slice(JSONPath):
             return []
         # Here's the hack. If it is a dictionary or some kind of constant,
         # put it in a single-element list
-        if (isinstance(datum.value, dict) or isinstance(datum.value, six.integer_types) or isinstance(datum.value, six.string_types)):
+        if (isinstance(datum.value, Mapping) or isinstance(datum.value, six.integer_types) or isinstance(datum.value, six.string_types)):
             return self.find(DatumInContext([datum.value], path=datum.path, context=datum.context))
 
         # Some iterators do not support slicing but we can still

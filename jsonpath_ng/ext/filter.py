@@ -14,7 +14,7 @@
 import operator
 import re
 from six import moves
-
+from collections.abc import Mapping
 from .. import JSONPath, DatumInContext, Index
 
 
@@ -42,7 +42,7 @@ class Filter(JSONPath):
 
         datum = DatumInContext.wrap(datum)
 
-        if isinstance(datum.value, dict):
+        if isinstance(datum.value, Mapping):
             datum.value = list(datum.value.values())
 
         if not isinstance(datum.value, list):
