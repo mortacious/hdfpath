@@ -37,6 +37,126 @@ Basic examples:
 
     $ python
 
+        >>> from hdfpath.jsonpath_ng import jsonpath, parse
+
+        # A robust parser, not just a regex. (Makes powerful extensions possible; see below)
+        >>> jsonpath_expr = parse('foo[*].baz')
+
+        # Extracting values is easy
+        >>> [match.value for match in jsonpath_expr.find({'foo': [{'baz': 1}, {'baz': 2}]})]
+        [1, 2]
+
+        # Matches remember where they came from
+        >>> [str(match.full_path) for match in jsonpath_expr.find({'foo': [{'baz': 1}, {'baz': 2}]})]
+        ['foo.[0].baz', 'foo.[1].baz']
+
+        # And this can be useful for automatically providing ids for bits of data that do not have them (currently a global switch)
+        >>> jsonpath.auto_id_field = 'id'
+        >>> [match.value for match in parse('foo[*].id').find({'foo': [{'id': 'bizzle'}, {'baz': 3}]})]
+        ['foo.bizzle', 'foo.[1]']
+
+        # A handy extension: named operators like
+
+        >>> from hdfpath.jsonpath_ng import jsonpath, parse
+
+        # A robust parser, not just a regex. (Makes powerful extensions possible; see below)
+        >>> jsonpath_expr = parse('foo[*].baz')
+
+        # Extracting values is easy
+        >>> [match.value for match in jsonpath_expr.find({'foo': [{'baz': 1}, {'baz': 2}]})]
+        [1, 2]
+
+        # Matches remember where they came from
+        >>> [str(match.full_path) for match in jsonpath_expr.find({'foo': [{'baz': 1}, {'baz': 2}]})]
+        ['foo.[0].baz', 'foo.[1].baz']
+
+        # And this can be useful for automatically providing ids for bits of data that do not have them (currently a global switch)
+        >>> jsonpath.auto_id_field = 'id'
+        >>> [match.value for match in parse('foo[*].id').find({'foo': [{'id': 'bizzle'}, {'baz': 3}]})]
+        ['foo.bizzle', 'foo.[1]']
+
+        # A handy extension: named operators like
+
+        >>> from hdfpath.jsonpath_ng import jsonpath, parse
+
+        # A robust parser, not just a regex. (Makes powerful extensions possible; see below)
+        >>> jsonpath_expr = parse('foo[*].baz')
+
+        # Extracting values is easy
+        >>> [match.value for match in jsonpath_expr.find({'foo': [{'baz': 1}, {'baz': 2}]})]
+        [1, 2]
+
+        # Matches remember where they came from
+        >>> [str(match.full_path) for match in jsonpath_expr.find({'foo': [{'baz': 1}, {'baz': 2}]})]
+        ['foo.[0].baz', 'foo.[1].baz']
+
+        # And this can be useful for automatically providing ids for bits of data that do not have them (currently a global switch)
+        >>> jsonpath.auto_id_field = 'id'
+        >>> [match.value for match in parse('foo[*].id').find({'foo': [{'id': 'bizzle'}, {'baz': 3}]})]
+        ['foo.bizzle', 'foo.[1]']
+
+        # A handy extension: named operators like
+
+        >>> from hdfpath.jsonpath_ng import jsonpath, parse
+
+        # A robust parser, not just a regex. (Makes powerful extensions possible; see below)
+        >>> jsonpath_expr = parse('foo[*].baz')
+
+        # Extracting values is easy
+        >>> [match.value for match in jsonpath_expr.find({'foo': [{'baz': 1}, {'baz': 2}]})]
+        [1, 2]
+
+        # Matches remember where they came from
+        >>> [str(match.full_path) for match in jsonpath_expr.find({'foo': [{'baz': 1}, {'baz': 2}]})]
+        ['foo.[0].baz', 'foo.[1].baz']
+
+        # And this can be useful for automatically providing ids for bits of data that do not have them (currently a global switch)
+        >>> jsonpath.auto_id_field = 'id'
+        >>> [match.value for match in parse('foo[*].id').find({'foo': [{'id': 'bizzle'}, {'baz': 3}]})]
+        ['foo.bizzle', 'foo.[1]']
+
+        # A handy extension: named operators like
+
+        >>> from hdfpath.jsonpath_ng import jsonpath, parse
+
+        # A robust parser, not just a regex. (Makes powerful extensions possible; see below)
+        >>> jsonpath_expr = parse('foo[*].baz')
+
+        # Extracting values is easy
+        >>> [match.value for match in jsonpath_expr.find({'foo': [{'baz': 1}, {'baz': 2}]})]
+        [1, 2]
+
+        # Matches remember where they came from
+        >>> [str(match.full_path) for match in jsonpath_expr.find({'foo': [{'baz': 1}, {'baz': 2}]})]
+        ['foo.[0].baz', 'foo.[1].baz']
+
+        # And this can be useful for automatically providing ids for bits of data that do not have them (currently a global switch)
+        >>> jsonpath.auto_id_field = 'id'
+        >>> [match.value for match in parse('foo[*].id').find({'foo': [{'id': 'bizzle'}, {'baz': 3}]})]
+        ['foo.bizzle', 'foo.[1]']
+
+        # A handy extension: named operators like
+
+        >>> from hdfpath.jsonpath_ng import jsonpath, parse
+
+        # A robust parser, not just a regex. (Makes powerful extensions possible; see below)
+        >>> jsonpath_expr = parse('foo[*].baz')
+
+        # Extracting values is easy
+        >>> [match.value for match in jsonpath_expr.find({'foo': [{'baz': 1}, {'baz': 2}]})]
+        [1, 2]
+
+        # Matches remember where they came from
+        >>> [str(match.full_path) for match in jsonpath_expr.find({'foo': [{'baz': 1}, {'baz': 2}]})]
+        ['foo.[0].baz', 'foo.[1].baz']
+
+        # And this can be useful for automatically providing ids for bits of data that do not have them (currently a global switch)
+        >>> jsonpath.auto_id_field = 'id'
+        >>> [match.value for match in parse('foo[*].id').find({'foo': [{'id': 'bizzle'}, {'baz': 3}]})]
+        ['foo.bizzle', 'foo.[1]']
+
+        # A handy extension: named operators like
+
     >>> from jsonpath_ng import jsonpath, parse
 
     # A robust parser, not just a regex. (Makes powerful extensions possible; see below)
@@ -57,6 +177,126 @@ Basic examples:
 
     # A handy extension: named operators like `parent`
     >>> [match.value for match in parse('a.*.b.`parent`.c').find({'a': {'x': {'b': 1, 'c': 'number one'}, 'y': {'b': 2, 'c': 'number two'}}})]
+        ['number two', 'number one']
+
+        # You can also build expressions directly quite easily
+        >>> from hdfpath.jsonpath_ng import Fields
+        >>> from jsonpath_ng.jsonpath import Slice
+
+        >>> jsonpath_expr_direct = Fields('foo').child(Slice('*')).child(Fields('baz'))  # This is equivalent
+
+
+    Using the extended parser:
+        ['number two', 'number one']
+
+        # You can also build expressions directly quite easily
+        >>> from hdfpath.jsonpath_ng import Fields
+        >>> from jsonpath_ng.jsonpath import Slice
+
+        >>> jsonpath_expr_direct = Fields('foo').child(Slice('*')).child(Fields('baz'))  # This is equivalent
+
+
+    Using the extended parser:
+        ['number two', 'number one']
+
+        # You can also build expressions directly quite easily
+        >>> from hdfpath.jsonpath_ng import Fields
+        >>> from jsonpath_ng.jsonpath import Slice
+
+        >>> jsonpath_expr_direct = Fields('foo').child(Slice('*')).child(Fields('baz'))  # This is equivalent
+
+
+    Using the extended parser:
+        ['number two', 'number one']
+
+        # You can also build expressions directly quite easily
+        >>> from hdfpath.jsonpath_ng import Fields
+        >>> from jsonpath_ng.jsonpath import Slice
+
+        >>> jsonpath_expr_direct = Fields('foo').child(Slice('*')).child(Fields('baz'))  # This is equivalent
+
+
+    Using the extended parser:
+        ['number two', 'number one']
+
+        # You can also build expressions directly quite easily
+        >>> from hdfpath.jsonpath_ng import Fields
+        >>> from jsonpath_ng.jsonpath import Slice
+
+        >>> jsonpath_expr_direct = Fields('foo').child(Slice('*')).child(Fields('baz'))  # This is equivalent
+
+
+    Using the extended parser:
+        ['number two', 'number one']
+
+        # You can also build expressions directly quite easily
+        >>> from hdfpath.jsonpath_ng import Fields
+        >>> from jsonpath_ng.jsonpath import Slice
+
+        >>> jsonpath_expr_direct = Fields('foo').child(Slice('*')).child(Fields('baz'))  # This is equivalent
+
+
+    Using the extended parser:
+        ['number two', 'number one']
+
+        # You can also build expressions directly quite easily
+        >>> from hdfpath.jsonpath_ng import Fields
+        >>> from hdfpath.jsonpath_ng import Slice
+
+        >>> jsonpath_expr_direct = Fields('foo').child(Slice('*')).child(Fields('baz'))  # This is equivalent
+
+
+    Using the extended parser:
+        ['number two', 'number one']
+
+        # You can also build expressions directly quite easily
+        >>> from hdfpath.jsonpath_ng import Fields
+        >>> from hdfpath.jsonpath_ng import Slice
+
+        >>> jsonpath_expr_direct = Fields('foo').child(Slice('*')).child(Fields('baz'))  # This is equivalent
+
+
+    Using the extended parser:
+        ['number two', 'number one']
+
+        # You can also build expressions directly quite easily
+        >>> from hdfpath.jsonpath_ng import Fields
+        >>> from hdfpath.jsonpath_ng import Slice
+
+        >>> jsonpath_expr_direct = Fields('foo').child(Slice('*')).child(Fields('baz'))  # This is equivalent
+
+
+    Using the extended parser:
+        ['number two', 'number one']
+
+        # You can also build expressions directly quite easily
+        >>> from hdfpath.jsonpath_ng import Fields
+        >>> from hdfpath.jsonpath_ng import Slice
+
+        >>> jsonpath_expr_direct = Fields('foo').child(Slice('*')).child(Fields('baz'))  # This is equivalent
+
+
+    Using the extended parser:
+        ['number two', 'number one']
+
+        # You can also build expressions directly quite easily
+        >>> from hdfpath.jsonpath_ng import Fields
+        >>> from hdfpath.jsonpath_ng import Slice
+
+        >>> jsonpath_expr_direct = Fields('foo').child(Slice('*')).child(Fields('baz'))  # This is equivalent
+
+
+    Using the extended parser:
+        ['number two', 'number one']
+
+        # You can also build expressions directly quite easily
+        >>> from hdfpath.jsonpath_ng import Fields
+        >>> from hdfpath.jsonpath_ng import Slice
+
+        >>> jsonpath_expr_direct = Fields('foo').child(Slice('*')).child(Fields('baz'))  # This is equivalent
+
+
+    Using the extended parser:
     ['number two', 'number one']
 
     # You can also build expressions directly quite easily
@@ -71,6 +311,36 @@ Using the extended parser:
 .. code:: python
 
   $ python
+
+    >>> from hdfpath.jsonpath_ng import parse
+
+    # A robust parser, not just a regex. (Makes powerful extensions possible; see below)
+    >>> jsonpath_expr = parse('foo[*].baz')
+
+    >>> from hdfpath.jsonpath_ng import parse
+
+    # A robust parser, not just a regex. (Makes powerful extensions possible; see below)
+    >>> jsonpath_expr = parse('foo[*].baz')
+
+    >>> from hdfpath.jsonpath_ng import parse
+
+    # A robust parser, not just a regex. (Makes powerful extensions possible; see below)
+    >>> jsonpath_expr = parse('foo[*].baz')
+
+    >>> from hdfpath.jsonpath_ng import parse
+
+    # A robust parser, not just a regex. (Makes powerful extensions possible; see below)
+    >>> jsonpath_expr = parse('foo[*].baz')
+
+    >>> from hdfpath.jsonpath_ng import parse
+
+    # A robust parser, not just a regex. (Makes powerful extensions possible; see below)
+    >>> jsonpath_expr = parse('foo[*].baz')
+
+    >>> from hdfpath.jsonpath_ng import parse
+
+    # A robust parser, not just a regex. (Makes powerful extensions possible; see below)
+    >>> jsonpath_expr = parse('foo[*].baz')
 
   >>> from jsonpath_ng.ext import parse
 

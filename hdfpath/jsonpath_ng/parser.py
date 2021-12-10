@@ -10,9 +10,9 @@ import os.path
 
 import ply.yacc
 
-from jsonpath_ng.exceptions import JsonPathParserError
-from jsonpath_ng.jsonpath import *
-from jsonpath_ng.lexer import JsonPathLexer
+from hdfpath.jsonpath_ng.exceptions import JsonPathParserError
+from hdfpath.jsonpath_ng.jsonpath import *
+from hdfpath.jsonpath_ng.lexer import JsonPathLexer
 
 logger = logging.getLogger(__name__)
 
